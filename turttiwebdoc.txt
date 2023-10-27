@@ -1,0 +1,24 @@
+Documentation
+alustus
+	npm install --global yarn
+
+npx create-react-app turttiweb
+	backend
+		npm install express mongoose bcryptjs jsonwebtoken body-parser
+		npm install nodemon //kehitystarkoitukseen
+	frontend
+		D:\turttiweb\client>npm install react-router-dom
+		npm install mongoose
+
+
+ drawio
+	luotu Turttiweb logo
+
+https://youtu.be/oNsf8sx9Fdg?t=2683
+https://youtu.be/oNsf8sx9Fdg?t=3596
+https://youtu.be/oNsf8sx9Fdg?t=4128
+
+mongodb
+database: turttiweb
+user: terot
+password 
