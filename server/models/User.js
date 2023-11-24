@@ -3,7 +3,9 @@ const bcrypt = require('bcryptjs'); // Tämä on tärkeä, jotta salasanoja void
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    name: String,
+    name: {
+        type: String,
+        unique: true},
     email: String,
     password: String,
     createdAt: {

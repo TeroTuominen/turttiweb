@@ -1,9 +1,11 @@
 .navbar {
-    padding: 1rem;
+    padding: 0 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75);
+    background-color: #b38cb4;
+    color: #000;
 }
 
 .navbar__logo {
@@ -31,10 +33,17 @@
     transition: all 0.3s;
     cursor: pointer;
     font-weight: 600;
+    font-size: 15px;
+    border: none;
+    background-color: transparent;
+    padding: 1rem 0;
+    display: block;
 }
 
 .navbar__link:hover {
     color: #ceafd4;
+    background-color: #000;
+    padding: 1rem 0;
 }
 
 .navbar__submenu-container {
@@ -52,8 +61,30 @@
     min-width: 300px;
     z-index: 99;
     background-color: #ceafd4;
+    list-style: none;
 }
 
 .navbar__submenu-item {
     padding: 0.5rem;
+    transition: all 0.3s;
+}
+
+.navbar__submenu-item:hover {
+    background-color: #b38cb4;
+}
+
+.navbar__submenu-link {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    padding: 0.5rem;
+    transition: all 0.3s;
+    cursor: pointer;
+    font-size: 15px;
+    background-color: transparent;
+    font-weight: 600;
+}
+
+.navbar__submenu-item:hover .navbar__submenu-link {
+    color: #fff;
 }

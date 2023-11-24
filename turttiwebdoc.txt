@@ -17,6 +17,22 @@ npx create-react-app turttiweb
 https://youtu.be/oNsf8sx9Fdg?t=2683
 https://youtu.be/oNsf8sx9Fdg?t=3596
 https://youtu.be/oNsf8sx9Fdg?t=4128
+https://youtu.be/oNsf8sx9Fdg?t=5662
+https://youtu.be/oNsf8sx9Fdg?t=6158
+https://youtu.be/oNsf8sx9Fdg?t=6690
+https://youtu.be/oNsf8sx9Fdg?t=6645
+https://youtu.be/oNsf8sx9Fdg?t=6942
+https://youtu.be/oNsf8sx9Fdg?t=7267
+https://youtu.be/oNsf8sx9Fdg?t=7380
+https://youtu.be/oNsf8sx9Fdg?t=7380
+https://youtu.be/oNsf8sx9Fdg?t=8621
+https://youtu.be/oNsf8sx9Fdg?t=10311
+https://youtu.be/oNsf8sx9Fdg?t=10898
+
+https://youtu.be/G6W6YMNFlJ0?t=906
+https://youtu.be/G6W6YMNFlJ0?t=2319
+https://youtu.be/G6W6YMNFlJ0?t=2848
+https://youtu.be/G6W6YMNFlJ0?t=2899
 
 mongodb
 database: turttiweb

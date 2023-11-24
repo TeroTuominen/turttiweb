@@ -5,30 +5,16 @@ const User = require('../models/User'); // tämä on User modeli, jonka avulla v
 const bcrypt = require('bcryptjs'); // tämä on bcryptjs moduuli, joka auttaa meitä salasanojen kryptaamisessa
 
 router.get('/init', async (req, res) => {
-    const token = req.query.token;
-    let user = null;
-    let response;
-
-    try {
-        const userData = jwt.verify(token, 'app');
-        user = await User.findById(userData.userId);
-
-    } catch (e) {
-        response = null;
-    }
-
-    if (user){
-        response = user;
-    }
-
-    res.send({user: response});
+    console.log('User ID:', req.userId);
+    const user = await User.findById(req.userId);
+    res.send({user});
 });
 
 router.post('/register', async (req, res) => {
-    const userExists = await User.find({email: req.body.email});
-    if (!userExists) {
+    const user = await User.findOne({email: req.body.email});
+    if (user) {
         return res.status(400).send({
-            message: 'User with this email does not exist'
+            message: 'User with this email already exists'
         });
     }
 
@@ -38,14 +24,14 @@ router.post('/register', async (req, res) => {
         password: req.body.password,
         role: 'user'
     });
-
+    
     await newUser.save();
 
     return res.sendStatus(201);
     });
 
     router.post('/login', async (req, res) => {
-        const user = await User.find({email: req.body.email});
+        const user = await User.findOne({email: req.body.email});
         if (!user) {
             return res.status(400).send({
                 message: 'User with this email does not exist'
@@ -66,5 +52,58 @@ router.post('/register', async (req, res) => {
             token
         })
     });
+    
+    router.post("/change-name", async (req, res) => {
+        const user = await User.findById(req.body.userId);
+
+        user.name = req.body.name;
+        await user.save();
+        return res.sendStatus(200);
+    });
+
+    router.post("/change-email", async (req, res) => {
+        const emailExists = await User.findOne({email: req.body.email});
+        if (emailExists) {
+            return res.status(400).send({
+                message: 'User with this email already exists'
+            });
+        }
+
+        const user = await User.findById(req.body.userId);
+
+        user.email = req.body.email;
+        await user.save();
+        return res.sendStatus(200);
+    });
+
+    router.post("/change-password", async (req, res) => {
+        console.log('Request body:', req.body);
+    
+        const user = await User.findById(req.body.userId);
+    
+        // Log the user object to see if it's retrieved successfully
+        console.log('User object:', user);
+    
+        const passwordIsEqual = await bcrypt.compare(req.body.currentPassword, user.password);
+        if (!passwordIsEqual) {
+            return res.status(401).send({
+                message: 'Current password is incorrect'
+            });
+        }
+    
+        user.password = req.body.password;
+        await user.save();
+        return res.sendStatus(200);
+    
+
+
+        // Rest of the code
+    });
+    
+
+    
+    
+    
+
 
 module.exports = router;

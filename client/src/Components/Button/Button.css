@@ -1,0 +1,14 @@
+.button {
+    border: 1px solid #ceafd4;
+    background-color: #a571af;
+    color: white;
+    padding: 20px 55px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button:hover {
+    background-color: #ceafd4;
+    color: #000; /* Change the text color on hover to black or another contrasting color */
+}
