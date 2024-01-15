@@ -1,0 +1,45 @@
+import React, { useEffect, useState } from 'react';
+import HttpClient from '../../Services/HttpClient';
+import { useParams } from 'react-router-dom';
+
+export default function ShowThread() {
+    const { id } = useParams();
+    const [thread, setThread] = useState(null);
+    const [replies, setReplies] = useState(null);
+
+    useEffect(() => {
+        setThread(null);
+        setReplies([]);
+        getThread();
+    }, [id]);
+
+    const getThread = async () => {
+        const { data } = await HttpClient().get('/api/thread/' + id);
+        setThread(data);
+        getReplies();
+    };
+
+    const getReplies = async () => {
+        const { data } = await HttpClient().get('/api/reply?threadId=' + id);
+        setReplies(data);
+    };
+
+    return (
+        <div className="page">
+            {thread && (
+                <div>
+                    <h1 className="page__title">{thread.title}</h1>
+                    <p>{thread.content}</p>
+                </div>
+            )}
+
+            <div className="list">
+                {replies !== null && replies.map((reply, index) => (
+                    <div className="list__item" key={reply._id}>
+                        <p>{reply.content}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}

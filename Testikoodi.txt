@@ -14,8 +14,6 @@ import HttpClient from './Pages/Services/HttpClient';
 import CreateForum from './Pages/Forum/Create/CreateForum';
 import ShowCategory from './Pages/Category/Show/ShowCategory';
 import CreateThread from './Pages/Forum/Create/CreateThread';
-import ShowForum from './Pages/Category/Show/ShowForum';
-import ShowThread from './Pages/Category/Show/ShowThread';
 
 
 function App() {
@@ -64,9 +62,7 @@ function App() {
                             <Route path="/category/create" element={<PrivateRoute element={<CreateCategory />} />} />
                             <Route path="/category/:id" element={<ShowCategory />} />
                             <Route path="/forum/create/:categoryId" element={<PrivateRoute element={<CreateForum />} />} />
-                            <Route path="/forum/:id" element={<ShowForum />} />
-                            <Route path="/forum/:forumId/create-thread" element={<PrivateRoute element={<CreateThread />} />} />
-                            <Route path="/thread/:id" element={<ShowThread />} />
+                            <Route path="/forum/:id" element={<CreateThread />} />
                         </Routes>
                     </Router>
                 </AppContext.Provider>

@@ -97,7 +97,6 @@ router.post('/register', async (req, res) => {
     
 
 
-        // Rest of the code
     });
     
 

@@ -27,7 +27,7 @@ export default function () {
             navigate(`/forum/${response.data._id}`);
         } catch (error) {
             // Handle error, e.g., setErrors(["Failed to create category"]);
-            console.error("Error creating category:", error);
+            console.error("Error creating forum:", error);
         }
     };
 

@@ -20,16 +20,18 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
-app.use(bodyParser.json());
-app.use(auth);
-
 app.use(express.static(path.join(__dirname, '..', 'client/public')));
 
 // Apply auth middleware after serving static files
+app.use(auth);
+
+app.use(bodyParser.json());
 
 app.use('/api/user', require('./controllers/User'));
 app.use('/api/category', protected, require('./controllers/Category'));
-app.use('/api/forum', require('./controllers/Forum'));
+app.use('/api/forum', protected, require('./controllers/Forum'));
+app.use('/api/thread', protected, require('./controllers/Thread'));
+app.use('/api/reply', protected, require('./controllers/Reply'));
 
 // Send the React build index.html file for all other routes
 app.get('*', (req, res) => {
