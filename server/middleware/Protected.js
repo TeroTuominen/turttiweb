@@ -12,6 +12,8 @@ module.exports = async (req, res, next) => {
             return res.status(401).json({ error: 'Invalid user ID' });
         }
 
+        req.user = user; // Attach the user object to req.user
+
         next();
     } catch (error) {
         console.error('Error in Protected middleware:', error);

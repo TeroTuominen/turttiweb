@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config();
 const auth = require('./middleware/Auth');
 const protected = require('./middleware/Protected');
@@ -20,6 +21,12 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
+
+// Use cors middleware here
+app.use(cors({
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}));
+
 app.use(express.static(path.join(__dirname, '..', 'client/public')));
 
 // Apply auth middleware after serving static files
@@ -38,8 +45,8 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
 });

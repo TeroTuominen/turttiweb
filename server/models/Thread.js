@@ -13,6 +13,11 @@ const threadSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
+    author: { // New field
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // This should match the name you used when defining your User model
+        required: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),

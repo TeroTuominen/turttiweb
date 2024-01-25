@@ -18,6 +18,7 @@ export default function ShowThread() {
 
     const getThread = async () => {
         const { data } = await HttpClient().get('/api/thread/' + id);
+        console.log(data);
         setThread(data);
         getReplies();
     };
@@ -36,7 +37,8 @@ export default function ShowThread() {
 
     return (
         <div className="page">
-            {thread && <Thread thread={thread} />}
+            {thread && <Thread thread={thread} />
+            }
 
             <form onSubmit={createReply}>
                 <textarea value={replyContent} onChange={e => setReplyContent(e.target.value)} required />

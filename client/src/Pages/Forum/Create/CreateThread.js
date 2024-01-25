@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react"; // import useContext
 import FormErrors from "../../../Components/Form/FormErrors/FormErrors";
 import Button from "../../../Components/Button/Button";
 import HttpClient from "../../Services/HttpClient";
 import { useNavigate, useParams } from "react-router-dom";
+import AppContext from "../../../Contexts/AppContext"; // import the AppContext
 
 export default function CreateThread() {
     const { forumId } = useParams();
@@ -11,18 +12,22 @@ export default function CreateThread() {
     const [content, setContent] = useState("");
     const navigate = useNavigate();
 
+    const { user } = useContext(AppContext); // get the current user from the AppContext
+    const currentUserId = user ? user._id : null; // get the user's ID, or null if the user is not logged in
+
     const onSubmit = async (event) => {
         event.preventDefault();
         setErrors([]);
         if (!title) setErrors(["Title is required"]);
         if (!content) setErrors([...errors, "Content is required"]);
-
+        if (!user) setErrors([...errors, "User is not logged in"]);
+    
         const data = {
             title,
             content,
             forumId,
         };
-
+    
         try {
             const response = await HttpClient().post("/api/thread/create", data);
             navigate(`/thread/${response.data._id}`);
